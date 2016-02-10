@@ -381,10 +381,10 @@ void Tree::ParseLine(char* line)
 	{
 		token = strtok_s(NULL, delim, &next_token);
 
-		int num = std::stoi(token);
-		printf_s("Insert(%d)\n", num);
+		//int num = std::stoi(token);
+		printf_s("Insert(%d)\n", index);
 
-		Insert(num);
+		Insert(index);
 		Print();
 	}
 }
