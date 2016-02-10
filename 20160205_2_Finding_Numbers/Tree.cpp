@@ -11,10 +11,11 @@ Tree::~Tree()
 	Clear();
 }
 
-void Tree::Insert(int index, bool isHuman)
+void Tree::Insert(int index, int nominator, bool isHuman)
 {
 	TreeNode* node = new TreeNode();
 	node->index = index;
+	node->nominator = nominator;
 	node->isHuman = isHuman;
 
 	if (root != nullptr)
@@ -52,8 +53,7 @@ void Tree::Insert(int index, bool isHuman)
 			else
 			{
 				//같은 경우
-				delete node;
-				node = nullptr;
+				target = node;
 				insertFinish = true; //종료
 			}
 		}
@@ -83,7 +83,7 @@ TreeNode* Tree::Find(int index)
 			break;
 		}
 	}
-	getParent(node);
+	
 	return node;
 }
 
@@ -325,7 +325,7 @@ Tree::TargetLocation Tree::getLocation(TreeNode* node)
 
 void Tree::Print()
 {
-	printf_s("Tree Print-----------------\n");
+	printf_s("\nTree Print-----------------\n");
 	Print(root);
 	printf_s("\n---------------------------\n");
 }
@@ -366,6 +366,8 @@ void Tree::ReadData(char* inputFileName/* = nullptr*/)
 
 		fclose(fp);
 	}
+
+	Print();
 }
 
 void Tree::ParseLine(char* line)
@@ -375,16 +377,35 @@ void Tree::ParseLine(char* line)
 	char* next_token = NULL;
 
 	token = strtok_s(line, delim, &next_token);
-	int index = std::stoi(token);
-
+	int nominator = std::stoi(token);
+	
 	while (token != NULL)
 	{
 		token = strtok_s(NULL, delim, &next_token);
+		
+		if (token != NULL)
+		{
+			int index = std::stoi(token);
 
-		//int num = std::stoi(token);
-		printf_s("Insert(%d)\n", index);
+			TreeNode* node = nullptr;
+			node = Find(nominator);
+			if (node != nullptr)
+			{
+				if (node->nominator == index && node->isHuman == true)
+				{
+					Insert(nominator, node->nominator, true);
+					printf_s("nominator: %d / index: %d / isHuman: true\n", node->nominator, nominator);
+				}
 
-		Insert(index);
-		Print();
+				continue;
+			}
+
+			node = Find(index);
+			if (node == nullptr)
+			{
+				Insert(index, nominator);
+				printf_s("nominator: %d / index: %d / isHuman: false\n", nominator, index);
+			}
+		}
 	}
 }

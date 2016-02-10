@@ -21,7 +21,7 @@ public:
 	Tree();
 	~Tree();
 
-	void Insert(int index, bool isHuman = false);
+	void Insert(int index, int nominator, bool isHuman = false);
 	TreeNode* Find(int index);
 	void Delete(int index);	
 	void deleteRoot();
