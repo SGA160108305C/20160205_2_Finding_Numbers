@@ -80,6 +80,14 @@
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="TownPeopleFinder.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TownPeople.h" />
+    <ClInclude Include="TownPeopleFinder.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

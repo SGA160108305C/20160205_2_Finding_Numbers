@@ -17,4 +17,20 @@
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TownPeopleFinder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TownPeople.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TownPeopleFinder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
